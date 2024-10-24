@@ -74,3 +74,15 @@ jobs:
       with:
         name: Application.uf2
         path: pico2-neopixel/.build/release/Application.uf2
+    - name: Build stm32-neopixel
+      run: |
+        echo +++ Using TOOLCHAINS=$TOOLCHAINS
+        python3 -m venv .venv
+        source .venv/bin/activate
+        echo +++ Building stm32-neopixel
+        cd stm32-neopixel
+        make
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Application.bin
+        path: stm32-neopixel/.build/release/Application.bin
