@@ -58,5 +58,19 @@ jobs:
         echo +++ Building pico-blink
         cd pico-blink
         ./build.sh
-
-        
+    - uses: actions/upload-artifact@v4
+      with:
+        name: blinky.uf2
+        path: pico-blink/.build/armv6m-apple-none-macho/release/blinky.uf2
+    - name: Build ico2-neopixel
+      run: |
+        echo +++ Using TOOLCHAINS=$TOOLCHAINS
+        python3 -m venv .venv
+        source .venv/bin/activate
+        echo +++ Building pico-blink
+        cd pico2-neopixel
+        make
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Application.uf2
+        path: pico2-neopixel/.build/release/Application.uf2
