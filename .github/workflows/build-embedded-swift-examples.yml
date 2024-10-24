@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: sw-dev-1/swift-embedded-examples
+        repository: apple/swift-embedded-examples
     - name: Download development snapshot toolchain
       run: |
         for (( i=0; i < 90; i++ ))
@@ -60,19 +60,19 @@ jobs:
         ./build.sh
     - uses: actions/upload-artifact@v4
       with:
-        name: blinky.uf2
+        name: pico-blink-blinky.uf2
         path: /Users/runner/work/swift-embedded-examples/swift-embedded-examples/pico-blink/.build/armv6m-apple-none-macho/release/blinky.uf2
     - name: Build pico2-neopixel
       run: |
         echo +++ Using TOOLCHAINS=$TOOLCHAINS
         python3 -m venv .venv
         source .venv/bin/activate
-        echo +++ Building pico-blink
+        echo +++ Building pico2-neopixel
         cd pico2-neopixel
         make
     - uses: actions/upload-artifact@v4
       with:
-        name: Application.uf2
+        name: pico2-neopixel-Application.uf2
         path: pico2-neopixel/.build/release/Application.uf2
     - name: Build stm32-neopixel
       run: |
@@ -84,5 +84,17 @@ jobs:
         make
     - uses: actions/upload-artifact@v4
       with:
-        name: Application.bin
+        name: stm32-neopixel-Application.bin
         path: stm32-neopixel/.build/release/Application.bin
+    - name: Build stm32-uart-echo
+      run: |
+        echo +++ Using TOOLCHAINS=$TOOLCHAINS
+        python3 -m venv .venv
+        source .venv/bin/activate
+        echo +++ Building stm32-uart-echo
+        cd stm32-uart-echo
+        make
+    - uses: actions/upload-artifact@v4
+      with:
+        name: stm32-uart-echo-Application.bin
+        path: stm32-uart-echo/.build/release/Application.bin
