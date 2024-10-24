@@ -6,6 +6,6 @@
 */sdkconfig.old
 */managed_components
 */dependencies.lock
-/.venv
+.venv
 activate-venv.sh
 test.sh

@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: apple/swift-embedded-examples
+        repository: sw-dev-1/swift-embedded-examples
     - name: Download development snapshot toolchain
       run: |
         for (( i=0; i < 90; i++ ))
@@ -61,8 +61,8 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: blinky.uf2
-        path: pico-blink/.build/armv6m-apple-none-macho/release/blinky.uf2
-    - name: Build ico2-neopixel
+        path: /Users/runner/work/swift-embedded-examples/swift-embedded-examples/pico-blink/.build/armv6m-apple-none-macho/release/blinky.uf2
+    - name: Build pico2-neopixel
       run: |
         echo +++ Using TOOLCHAINS=$TOOLCHAINS
         python3 -m venv .venv
